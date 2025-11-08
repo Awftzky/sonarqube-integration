@@ -54,3 +54,4 @@ are executed in two different ways: once via
 [calling the executable script](src/test/java/com/felixseifert/java/HelloCmdTest.java) (which calls
 the JAR). You can observe how the same tests use different configs via implementing abstract
 methods.
+# sonarqube-integration
