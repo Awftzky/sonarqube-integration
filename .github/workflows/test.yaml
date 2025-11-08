@@ -24,5 +24,5 @@ jobs:
         run: |
           mvn verify sonar:sonar \
             -Dsonar.projectKey=modul8-103022400029 \
-            -Dsonar.host.url=https://nontautomerizable-alesia-mortifiedly.ngrok \
+            -Dsonar.host.url=https://nontautomerizable-alesia-mortifiedly.ngrok-free.dev \
             -Dsonar.login=$SONAR_TOKEN
