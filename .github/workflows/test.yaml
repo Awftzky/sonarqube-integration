@@ -1,4 +1,4 @@
-name: Test with Maven
+name: Build, Test, and Analyze with SonarQube
 
 on:
   push:
@@ -7,17 +7,28 @@ on:
     branches: [ "main" ]
 
 jobs:
-  test:
-
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'temurin'
           cache: maven
-      - name: Test with Maven
+
+      - name: Build and Test with Maven
         run: make test
+
+      - name: Run SonarQube Analysis
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          mvn -B verify sonar:sonar \
+            -Dsonar.projectKey=modul8-103022400029 \
+            -Dsonar.host.url=http://localhost:9000 \
+            -Dsonar.login=$SONAR_TOKEN
