@@ -12,17 +12,19 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'temurin'
           cache: maven
+
       - name: Build and analyze with SonarQube
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          mvn verify sonar:sonar \
+          mvn -B clean verify sonar:sonar \
             -Dsonar.projectKey=modul8-103022400029 \
             -Dsonar.host.url=https://nontautomerizable-alesia-mortifiedly.ngrok-free.dev \
             -Dsonar.login=$SONAR_TOKEN
